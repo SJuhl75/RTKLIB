@@ -1,4 +1,4 @@
-include_directories(.)
+include_directories(. ${CMAKE_SOURCE_DIR}/submodules/NeQuickJRC/src/lib/public)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 if(WIN32)

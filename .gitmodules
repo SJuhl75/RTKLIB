@@ -1,0 +1,3 @@
+[submodule "submodules/NeQuickJRC"]
+	path = submodules/NeQuickJRC
+	url = git@github.com:mgfernan/NeQuickJRC.git

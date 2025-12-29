@@ -24,7 +24,7 @@ void utest1(void)
     a=str2num(s1,28,10); assert(fabs(a-90.0    )<1E-14);
     a=str2num(s2,4,4);   assert(fabs(a-3E45    )<1E+30);
     a=str2num(s3,4,8);   assert(fabs(a-3456.78 )<1E-12);
-    
+
     printf("%s utset1 : OK\n",__FILE__);
 }
 /* str2time() */
@@ -49,7 +49,7 @@ void utest2(void)
         assert(!s&&ep[0]==1980&&ep[1]==10&&ep[2]==30&&ep[3]==6&&ep[4]==58&&ep[5]==9);
     s=str2time(s4,4,20,&t); time2epoch(t,ep);
         assert(!s&&ep[0]==2037&&ep[1]==12&&ep[2]==31&&ep[3]==1&&ep[4]==2&&ep[5]==3);
-    
+
     printf("%s utset2 : OK\n",__FILE__);
 }
 /* epoch2time(),time2epoch() */
@@ -67,7 +67,7 @@ void utest3(void)
     int year,month,day,mday[]={31,28,31,30,31,30,31,31,30,31,30,31};
     gtime_t t;
     double ep[6];
-    
+
     t=epoch2time(ep0); time2epoch(t,ep);
         assert(ep[0]==1980&&ep[1]==1&&ep[2]==6&&ep[3]==0&&ep[4]==0&&ep[5]==0.0);
     t=epoch2time(ep1); time2epoch(t,ep);
@@ -84,7 +84,7 @@ void utest3(void)
     t=epoch2time(ep6); time2epoch(t,ep);
         assert(ep[0]==2099&&ep[1]==12&&ep[2]==31&&ep[3]==23&&ep[4]==59&&fabs(ep[5]-59.999999)<1E-14);
 #endif
-    
+
 #ifdef TIME_64BIT
     for (year=1970;year<=2099;year++) {
 #else
@@ -128,7 +128,7 @@ void utest4(void)
     t=gpst2time(6260,345600.0); time2epoch(t,ep);
         assert(ep[0]==2099&&ep[1]==12&&ep[2]==31&&ep[3]==0&&ep[4]==0&&ep[5]==0.0);
 #endif
-    
+
 #ifdef TIME_64BIT
     for (w=1000;w<=6260;w++) {
 #else
@@ -160,7 +160,7 @@ void utest5(void)
         assert(ep[0]==2004&&ep[1]==3&&ep[2]==1&&ep[3]==0&&ep[4]==0&&ep[5]==0.0);
     t=timeadd(epoch2time(ep3),86400.0*2); time2epoch(t,ep);
         assert(ep[0]==2004&&ep[1]==3&&ep[2]==2&&ep[3]==0&&ep[4]==0&&ep[5]==0.0);
-    
+
     printf("%s utset5 : OK\n",__FILE__);
 }
 /* timediff() */
@@ -182,7 +182,7 @@ void utest6(void)
         assert(sec==86400.0*2);
     sec=timediff(epoch2time(ep3),epoch2time(ep4));
         assert(sec==-86400.0);
-    
+
     printf("%s utset6 : OK\n",__FILE__);
 }
 /* gpst2utc() */
@@ -225,7 +225,7 @@ void utest8(void)
         t2=utc2gpst(t0); t3=gpst2utc(t2); assert(t0.time==t3.time&&t0.sec==t3.sec);
         t0.time+=86400.0;
     }
-    
+
     printf("%s utset8 : OK\n",__FILE__);
 }
 /* time2str() */
@@ -260,7 +260,7 @@ void utest9(void)
     time2str(epoch2time(ep2),s,7);
         ret=strcmp(s,"2006/02/28 23:59:59.9999995");
         assert(!ret);
-    
+
     printf("%s utset9 : OK\n",__FILE__);
 }
 /* timeget() */
@@ -275,7 +275,7 @@ void utest10(void)
     time2str(time1,s1,6);
     time2str(time2,s2,6);
     assert(timediff(time1,time2)<=0.0);
-    
+
     printf("%s utset10 : OK\n",__FILE__);
 }
 /* time2doy() */
@@ -291,7 +291,7 @@ void utest11(void)
     assert(fabs(doy1-1.0)<1E-6);
     assert(fabs(doy2-366.0)<1E-6);
     assert(fabs(doy3-365.5)<1E-6);
-    
+
     printf("%s utset11 : OK\n",__FILE__);
 }
 int main(void)

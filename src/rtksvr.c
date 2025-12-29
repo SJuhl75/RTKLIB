@@ -817,18 +817,6 @@ extern int rtksvrinit(rtksvr_t *svr)
     svr->nav.n =svr->nav.nmax =MAXSAT *4;
     svr->nav.ns=svr->nav.nsmax=NSATSBS*2;
 
-    if (MAXPRNGLO > 0) {
-      svr->nav.geph = (geph_t *)malloc(sizeof(geph_t) * MAXPRNGLO * 2);
-      if (svr->nav.geph == NULL) {
-        tracet(1,"rtksvrinit: malloc error\n");
-        rtksvrfree(svr);
-        return 0;
-      }
-      geph_t geph0 = {0,-1};
-      for (i = 0; i < MAXPRNGLO * 2; i++) svr->nav.geph[i] = geph0;
-    }
-    svr->nav.ng = svr->nav.ngmax = MAXPRNGLO * 2;
-
     for (i=0;i<3;i++) for (j=0;j<MAXOBSBUF;j++) {
         if (!(svr->obs[i][j].data=(obsd_t *)malloc(sizeof(obsd_t)*MAXOBS))) {
             tracet(1,"rtksvrinit: malloc error\n");

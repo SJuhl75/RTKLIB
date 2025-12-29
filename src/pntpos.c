@@ -229,6 +229,11 @@ extern int ionocorr(gtime_t time, const nav_t *nav, int sat, const double *pos,
         err=1;
     }
     /* QZSS broadcast ionosphere model */
+    if (ionoopt==IONOOPT_GAL) {
+        if(galioncorr(time,nav->ion_gal,pos,azel,ion,var)) return 1;
+        err=1;
+    }
+    /* QZSS broadcast ionosphere model */
     if (ionoopt==IONOOPT_QZS&&norm(nav->ion_qzs,8)>0.0) {
         *ion=ionmodel(time,nav->ion_qzs,pos,azel);
         *var=SQR(*ion*ERR_BRDCI);

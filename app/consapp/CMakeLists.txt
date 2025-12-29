@@ -1,26 +1,31 @@
 include_directories(${PROJECT_SOURCE_DIR}/src)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
+#get_directory_property(NEQUICK_LIB_NAME DIRECTORY ${CMAKE_SOURCE_DIR}/submodules/NeQuickJRC/ NEQUICK_LIB_NAME)
+set(NEQUICK_LIB_NAME nequick)
+
+message("Nequick library name: ${NEQUICK_LIB_NAME}")
+
 add_executable(rnx2rtkp rnx2rtkp/rnx2rtkp.c)
-target_link_libraries(rnx2rtkp rtklib)
+target_link_libraries(rnx2rtkp rtklib nequick pthread)
 install(TARGETS rnx2rtkp RUNTIME DESTINATION bin)
 
 add_executable(convbin convbin/convbin.c)
-target_link_libraries(convbin rtklib)
+target_link_libraries(convbin rtklib nequick pthread)
 install(TARGETS convbin RUNTIME DESTINATION bin)
 
 add_executable(pos2kml pos2kml/pos2kml.c)
-target_link_libraries(pos2kml rtklib)
+target_link_libraries(pos2kml rtklib nequick pthread)
 install(TARGETS pos2kml RUNTIME DESTINATION bin)
 
 # add executables only supported on unix-like systems
 if (UNIX)
   add_executable(rtkrcv rtkrcv/rtkrcv.c rtkrcv/vt.c)
-  target_link_libraries(rtkrcv rtklib)
+  target_link_libraries(rtkrcv rtklib nequick pthread)
   install(TARGETS rtkrcv RUNTIME DESTINATION bin)
 
   add_executable(str2str str2str/str2str.c)
-  target_link_libraries(str2str rtklib)
+  target_link_libraries(str2str rtklib nequick pthread)
   install(TARGETS str2str RUNTIME DESTINATION bin)
 endif()
 

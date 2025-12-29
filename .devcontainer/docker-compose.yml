@@ -1,0 +1,11 @@
+version: "3.6"
+
+services:
+  cdev:
+    image: 387039469323.dkr.ecr.eu-central-1.amazonaws.com/gcc:debian-python3.9
+    volumes:
+      - $PWD:/src
+    stdin_open: true
+    tty: true
+    environment:
+      - TEST_DATA_FOLDER=/data

@@ -16,10 +16,13 @@ include(CTest)
 option(IERS_MODEL "Use Earth models from IERS" OFF)
 
 set(TEST_DATA_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test/data)
-
 # configure rtklib
 add_definitions(-DENAGLO -DENAQZS -DENACMP -DENAGAL -DENAIRN -DNFREQ=3 -DNEXOBS=3 -DTRACE -DSVR_REUSEADDR)
 
+add_subdirectory(submodules/NeQuickJRC)
+add_definitions(-DFTR_MODIP_CCIR_AS_CONSTANTS)  # Make compilation with preloaded MODIP grid and CCIR data
+
+message(STATUS "Submodule Variable: [ ${NEQUICK_LIB_NAME} ]")
 
 # 3rd party libs
 add_subdirectory(lib)
